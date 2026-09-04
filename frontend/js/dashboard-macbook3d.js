@@ -1,5 +1,5 @@
 /* SevaHub live MacBook workspace.
-   Keeps the active dashboard content inside the MacBook, but avoids continuous scroll/pointer animation work. */
+   Keeps active dashboard content inside the laptop; dashboard-motion.js animates its lid on scroll. */
 (function(){
   const installed={USER:null,WORKER:null};
   let appScanRaf=0;
@@ -64,10 +64,12 @@
         <p>${esc(copy[2])}</p>
       </div>
       <div class="sevahub-macbook3d" data-sevahub-macbook-card="1">
+        <div class="sevahub-macbook3d-lid">
         <div class="sevahub-macbook3d-notch"></div>
         <div class="sevahub-macbook3d-screen">
           <div class="sevahub-macbook3d-screenbar"><b>SEVAHUB</b><span>${role==='WORKER'?'Worker':'User'} workspace</span></div>
           <div class="sevahub-macbook3d-screenbody"></div>
+        </div>
         </div>
         <div class="sevahub-macbook3d-base"><span></span></div>
       </div>

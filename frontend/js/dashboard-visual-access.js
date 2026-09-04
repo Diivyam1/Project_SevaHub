@@ -8,7 +8,11 @@
 
   function stripMacClasses(root){
     const all=[root,...root.querySelectorAll('*')];
-    all.forEach(el=>el.classList?.remove('sevahub-macbook-services-panel','sevahub-macbook-overview-grid'));
+    all.forEach(el=>{
+      el.classList?.remove('sevahub-macbook-services-panel','sevahub-macbook-overview-grid','sev-motion-active');
+      el.style?.removeProperty('--sev-card-x');
+      el.style?.removeProperty('--sev-card-y');
+    });
   }
 
   function mapMirrorTree(originalRoot,cloneRoot,targets,role){

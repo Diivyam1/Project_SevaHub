@@ -1,0 +1,43 @@
+/* The effects supplied in apply.docx, adapted to SevaHub's live vanilla-JS UI. */
+.sevahub-macbook3d { perspective: 1200px; width: min(89%, 650px); }
+.sevahub-macbook3d-lid {
+  position: relative;
+  z-index: 2;
+  transform-origin: center bottom;
+  transform: translateY(var(--sev-lid-rise, 0px)) rotateX(var(--sev-lid-angle, 0deg)) scale(var(--sev-lid-scale, 1));
+}
+.sevahub-macbook3d-lid:focus-within { transform: none; }
+
+/* Only hovered/focused cards get a 3D layer. All buttons keep their original DOM. */
+main.dashboard .sev-motion-card {
+  position: relative;
+  transform: none;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  main.dashboard .sev-motion-card.sev-motion-active,
+  main.dashboard .sev-motion-card:focus-within {
+    z-index: 4;
+    overflow: visible !important;
+    contain: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    transform-style: preserve-3d;
+    transform: perspective(1000px) rotateX(var(--sev-card-x, 0deg)) rotateY(var(--sev-card-y, 0deg)) translateY(-3px) !important;
+    box-shadow: 0 20px 38px rgba(35, 25, 18, .22);
+  }
+  main.dashboard .sev-motion-card > :is(h2,h3,p,.price,.service-icon,img,.tabs,.btn,.split,.layout-grid-content) {
+    translate: 0 0 0;
+    transition: translate .25s ease;
+  }
+  main.dashboard .sev-motion-card:is(.sev-motion-active,:focus-within) > :is(h2,h3,.split) { translate: 0 0 35px; }
+  main.dashboard .sev-motion-card:is(.sev-motion-active,:focus-within) > :is(p,.price,.layout-grid-content) { translate: 0 0 45px; }
+  main.dashboard .sev-motion-card:is(.sev-motion-active,:focus-within) > :is(.service-icon,img) { translate: 0 0 65px; }
+  main.dashboard .sev-motion-card:is(.sev-motion-active,:focus-within) > :is(.btn,.tabs) { translate: 0 0 20px; }
+  main.dashboard .sev-motion-card .layout-grid-overlay { border-radius: inherit; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sevahub-macbook3d-lid { transform: none !important; }
+  main.dashboard .sev-motion-card,
+  main.dashboard .sev-motion-card > * { transform: none !important; translate: none !important; transition: none !important; }
+}
