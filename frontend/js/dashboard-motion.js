@@ -1,6 +1,8 @@
 /* Framework-free adaptations of the laptop scroll, 3D cards and blur-in headings
    in apply.docx. No wrappers are added to live controls or mirrored content. */
 (function () {
+  const headingDelay = 250;
+  const headingDuration = 1100;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
   const pointer = matchMedia('(hover: hover) and (pointer: fine)');
   const cardSelector = '.service-card, .worker-card, .layout-grid-card, .grid-3 > .card.panel';
@@ -32,7 +34,7 @@
     const animation = heading.animate([
       { filter: 'blur(8px)', opacity: 0 },
       { filter: 'blur(0px)', opacity: 1 }
-    ], { delay: 250, duration: 1100, fill: 'backwards', easing: 'cubic-bezier(.2,.65,.3,1)' });
+    ], { delay: headingDelay, duration: headingDuration, fill: 'backwards', easing: 'cubic-bezier(.2,.65,.3,1)' });
     animations.set(heading, animation);
     animation.onfinish = animation.oncancel = () => animations.delete(heading);
   }
