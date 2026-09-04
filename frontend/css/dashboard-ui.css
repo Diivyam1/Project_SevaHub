@@ -1,0 +1,223 @@
+/* SevaHub interior dashboard: brown chrome + homepage peach shell. */
+.dashboard{padding-top:24px}
+
+/* Brown greeting banner */
+.dashboard > .split:first-child{
+  margin-bottom:20px;
+  padding:28px 30px;
+  border:1px solid #5b4035 !important;
+  border-radius:24px;
+  background:linear-gradient(135deg,#382b26,#42322b) !important;
+  box-shadow:0 16px 36px rgba(77,38,20,.18) !important;
+}
+.dashboard > .split:first-child h1{
+  margin:0 0 8px;
+  color:#ffb56f !important;
+  letter-spacing:-.8px;
+  font-size:clamp(30px,3.2vw,43px);
+}
+.dashboard > .split:first-child p{margin:0;color:#c9c5c1 !important;font-size:16px}
+
+/* Four summary cards in one row */
+.dashboard .stats{
+  display:grid !important;
+  grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+  gap:16px;
+  margin:0 0 26px;
+}
+.dashboard .stats .stat{
+  min-height:136px;
+  padding:24px;
+  border:0 !important;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 14px 28px rgba(42,29,23,.14),0 5px 0 rgba(42,29,23,.10) !important;
+  transform:none !important;
+}
+.dashboard .stats .stat::before{background:linear-gradient(145deg,rgba(255,255,255,.20),transparent 46%) !important}
+.dashboard .stats .stat::after{content:"";position:absolute;width:120px;height:120px;right:-40px;bottom:-48px;border-radius:50%;background:rgba(255,255,255,.14);pointer-events:none}
+.dashboard .stats .stat:nth-child(1){background:linear-gradient(135deg,#a63811,#ec4d06) !important;color:#fff}
+.dashboard .stats .stat:nth-child(2){background:linear-gradient(135deg,#6b2bd9,#8b4bf1) !important;color:#fff}
+.dashboard .stats .stat:nth-child(3){background:linear-gradient(135deg,#d87500,#f5a000) !important;color:#fff}
+.dashboard .stats .stat:nth-child(4){background:linear-gradient(135deg,#16833f,#20b85b) !important;color:#fff}
+.dashboard .stats .stat .muted{color:rgba(255,255,255,.9) !important;font-weight:800;font-size:14px}
+.dashboard .stats .stat b{margin-top:13px;color:#fff !important;text-shadow:0 2px 8px rgba(0,0,0,.18) !important;font-size:34px}
+
+/* Brown interior navigation strip */
+.dashboard > .tabs{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  flex-wrap:nowrap;
+  margin:0 0 30px;
+  padding:8px 10px;
+  min-height:60px;
+  border:1px solid #60483d !important;
+  border-radius:22px;
+  background:#382b26 !important;
+  box-shadow:0 12px 30px rgba(60,35,24,.18) !important;
+  overflow-x:auto !important;
+  overflow-y:hidden !important;
+  scrollbar-width:none;
+}
+.dashboard > .tabs::-webkit-scrollbar{display:none;width:0;height:0}
+.dashboard > .tabs .btn,
+.dashboard > .tabs .btn.secondary{
+  flex:0 0 auto;
+  min-height:40px;
+  padding:9px 13px;
+  border:0 !important;
+  border-radius:12px;
+  background:transparent !important;
+  color:#ffb46d !important;
+  box-shadow:none !important;
+  text-shadow:none !important;
+  font-weight:800;
+  transform:none !important;
+}
+.dashboard > .tabs .btn::before{display:none}
+.dashboard > .tabs .btn:hover,
+.dashboard > .tabs .btn.secondary:hover{background:#4c382f !important;color:#ffd0a3 !important}
+
+/* Homepage peach for the large interior content area. */
+.dashboard #userContent > .panel,
+.dashboard #workerContent > .panel,
+.dashboard #userContent > .card,
+.dashboard #workerContent > .card{
+  border:1px solid rgba(117,74,44,.22) !important;
+  border-radius:22px;
+  background:linear-gradient(145deg,#f9c18d 0%,#f4b57c 48%,#f7c092 100%) !important;
+  color:#573018 !important;
+  box-shadow:0 16px 38px rgba(109,58,25,.15) !important;
+}
+.dashboard #userContent > .panel > h2,
+.dashboard #workerContent > .panel > h2,
+.dashboard #userContent > .card > h2,
+.dashboard #workerContent > .card > h2,
+.booking-list-marker > h2,
+.worker-payment-receipts > h2,
+.booking-chat h2{color:#713716 !important}
+
+/* Keep inner service/booking cards readable on top of peach. */
+.dashboard #userContent > .card .service-card,
+.dashboard #userContent > .card .worker-card,
+.dashboard #userContent > .card .card,
+.dashboard #userContent > .card .offer,
+.dashboard #workerContent > .card .service-card,
+.dashboard #workerContent > .card .worker-card,
+.dashboard #workerContent > .card .card,
+.dashboard #workerContent > .card .offer,
+.dashboard #userContent > .panel .card,
+.dashboard #userContent > .panel .offer,
+.dashboard #workerContent > .panel .card,
+.dashboard #workerContent > .panel .offer{
+  background:#fff8f1 !important;
+  border-color:rgba(117,74,44,.28) !important;
+  color:#2e2925 !important;
+}
+.dashboard #userContent .service-card .muted,
+.dashboard #userContent .worker-card .muted,
+.dashboard #userContent .offer .muted,
+.dashboard #workerContent .service-card .muted,
+.dashboard #workerContent .worker-card .muted,
+.dashboard #workerContent .offer .muted{color:#776b62 !important}
+
+.booking-list-marker > .card.panel,#workerContent > .card.panel .offer{border-left:4px solid #b95417 !important}
+.booking-chat{border-top:4px solid #b95417 !important}
+.booking-chat .chat-body{background:#fff0e2 !important;border:1px solid #d99f73 !important;border-radius:14px;color:#2e2925 !important}
+.dashboard #userContent > .form .field label,
+.dashboard #workerContent > .form .field label{color:#573018 !important}
+
+/* Make every remaining light dashboard surface use the SAME peach as the homepage visual side. */
+body:not(.dark):has(.app:not(.dark) .dashboard),
+body:not(.dark):has(.app:not(.dark) .dashboard) .app{
+  background:linear-gradient(145deg,#f9c18d 0%,#f4b57c 48%,#f7c092 100%) !important;
+  background-attachment:fixed !important;
+}
+body:not(.dark):has(.app:not(.dark) .dashboard)::before,
+body:not(.dark):has(.app:not(.dark) .dashboard)::after{opacity:0 !important}
+body:not(.dark):has(.app:not(.dark) .dashboard) .nav{
+  background:linear-gradient(145deg,#f9c18d 0%,#f4b57c 48%,#f7c092 100%) !important;
+  border-bottom:1px solid rgba(117,74,44,.24) !important;
+  box-shadow:0 8px 24px rgba(109,58,25,.12) !important;
+  backdrop-filter:none !important;
+}
+body:not(.dark):has(.app:not(.dark) .dashboard) .nav .brand{color:#713716 !important;text-shadow:none !important}
+body:not(.dark):has(.app:not(.dark) .dashboard) .nav .theme,
+body:not(.dark):has(.app:not(.dark) .dashboard) .nav .pill,
+body:not(.dark):has(.app:not(.dark) .dashboard) .nav .btn.secondary{
+  background:rgba(255,248,241,.58) !important;
+  border-color:rgba(117,74,44,.24) !important;
+  color:#573018 !important;
+}
+
+/* True dark mode: no white/cream outer dashboard areas. */
+body.dark,.app.dark{
+  --bg:#050607;
+  --surface:#0c1013;
+  --text:#f5f3f0;
+  --muted:#aab0b5;
+  --line:#242b30;
+  background:#050607 !important;
+  color:#f5f3f0 !important;
+}
+body:has(.app.dark .dashboard){background:#050607 !important}
+body.dark::before,body.dark::after,body:has(.app.dark .dashboard)::before,body:has(.app.dark .dashboard)::after{opacity:.03 !important}
+.dark .nav,body.dark .nav{background:#0b0e10 !important;border-bottom-color:#24292d !important;box-shadow:0 8px 22px rgba(0,0,0,.45) !important}
+.dark .brand,body.dark .brand{color:#f0a65f !important;text-shadow:none !important}
+.dark .theme,body.dark .theme{background:#07090b !important;color:#fff !important;border-color:#2b3034 !important}
+.dark .nav .pill,body.dark .nav .pill{background:#11171b !important;color:#ffb66f !important;border-color:#30383d !important}
+.dark .nav .btn.secondary,body.dark .nav .btn.secondary{background:#0d1418 !important;color:#ffb66f !important;border-color:#30383d !important;box-shadow:0 5px #020304,0 10px 16px rgba(0,0,0,.38) !important}
+.dark .dashboard > .split:first-child,body.dark .dashboard > .split:first-child{background:#171310 !important;border-color:#3b2c25 !important}
+.dark .dashboard > .tabs,body.dark .dashboard > .tabs{background:#171310 !important;border-color:#3b2c25 !important}
+.dark .dashboard #userContent > .panel,
+.dark .dashboard #workerContent > .panel,
+.dark .dashboard #userContent > .card,
+.dark .dashboard #workerContent > .card,
+body.dark .dashboard #userContent > .panel,
+body.dark .dashboard #workerContent > .panel,
+body.dark .dashboard #userContent > .card,
+body.dark .dashboard #workerContent > .card{
+  background:#090d10 !important;
+  border-color:#263038 !important;
+  color:#f2f4f5 !important;
+  box-shadow:0 16px 38px rgba(0,0,0,.45) !important;
+}
+.dark .dashboard #userContent .card,
+.dark .dashboard #workerContent .card,
+.dark .dashboard #userContent .offer,
+.dark .dashboard #workerContent .offer,
+body.dark .dashboard #userContent .card,
+body.dark .dashboard #workerContent .card,
+body.dark .dashboard #userContent .offer,
+body.dark .dashboard #workerContent .offer{
+  background:#0d1317 !important;
+  border-color:#28343b !important;
+  color:#eef1f3 !important;
+}
+.dark .dashboard #userContent .muted,
+.dark .dashboard #workerContent .muted,
+body.dark .dashboard #userContent .muted,
+body.dark .dashboard #workerContent .muted{color:#aab2b8 !important}
+.dark #userContent h2,.dark #workerContent h2,body.dark #userContent h2,body.dark #workerContent h2{color:#ffb36a !important}
+.dark .booking-chat .chat-body,body.dark .booking-chat .chat-body{background:#05080a !important;border-color:#273139 !important;color:#f2f5f7 !important}
+.dark .msg,body.dark .msg{background:#12191e !important;color:#f2f5f7 !important}
+.dark .msg.user,body.dark .msg.user{background:#b94f1c !important;color:#fff !important}
+.dark .field input,.dark .field select,.dark .field textarea,body.dark .field input,body.dark .field select,body.dark .field textarea{background:#080c0f !important;color:#f2f5f7 !important;border-color:#303a40 !important}
+.dark .history-total,body.dark .history-total{background:#0a0f12 !important}
+
+@media(max-width:900px){
+  .dashboard .stats{grid-template-columns:repeat(4,minmax(155px,1fr)) !important;overflow-x:auto;overflow-y:hidden;padding:2px 2px 10px;scrollbar-width:none}
+  .dashboard .stats::-webkit-scrollbar{display:none}
+  .dashboard .stats .stat{min-width:155px}
+}
+@media(max-width:650px){
+  .dashboard{padding-top:16px}
+  .dashboard > .split:first-child{padding:20px;border-radius:20px}
+  .dashboard > .split:first-child h1{font-size:29px}
+  .dashboard .stats{grid-template-columns:repeat(4,minmax(145px,1fr)) !important;gap:10px}
+  .dashboard .stats .stat{min-width:145px;min-height:112px;padding:17px}
+  .dashboard .stats .stat b{font-size:28px}
+  .dashboard > .tabs{min-height:54px;padding:7px 8px}
+  .dashboard > .tabs .btn{flex:0 0 auto}
+}
