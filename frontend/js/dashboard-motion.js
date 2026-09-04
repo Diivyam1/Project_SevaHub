@@ -32,7 +32,7 @@
     const animation = heading.animate([
       { filter: 'blur(8px)', opacity: 0 },
       { filter: 'blur(0px)', opacity: 1 }
-    ], { duration: 600, easing: 'cubic-bezier(.2,.65,.3,1)' });
+    ], { delay: 250, duration: 1100, fill: 'backwards', easing: 'cubic-bezier(.2,.65,.3,1)' });
     animations.set(heading, animation);
     animation.onfinish = animation.oncancel = () => animations.delete(heading);
   }
