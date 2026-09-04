@@ -41,3 +41,16 @@ main.dashboard .sev-motion-card {
   main.dashboard .sev-motion-card,
   main.dashboard .sev-motion-card > * { transform: none !important; translate: none !important; transition: none !important; }
 }
+
+/* ContainerScroll-style dashboard preview, driven by the shared scroll observer. */
+.dashboard-scroll-stage { perspective: 1000px; contain: layout style; }
+.dashboard-scroll-hero .dashboard-scroll-card {
+  transform-origin: center center;
+  transform: rotateX(var(--sev-hero-angle, 0deg)) scale(var(--sev-hero-scale, 1));
+  transition: none;
+}
+.dashboard-scroll-title { transform: translateY(var(--sev-hero-title-y, 0px)); }
+@media (prefers-reduced-motion: reduce) {
+  .dashboard-scroll-hero .dashboard-scroll-card,
+  .dashboard-scroll-title { transform: none !important; }
+}

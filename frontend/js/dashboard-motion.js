@@ -7,8 +7,8 @@
   const pointer = matchMedia('(hover: hover) and (pointer: fine)');
   const cardSelector = '.service-card, .worker-card, .layout-grid-card, .grid-3 > .card.panel';
   const headingSelector = 'h1,h2,h3,h4,h5,h6,[role="heading"],.dashboard-preview-heading';
-  const laptops = new Set();
-  const visibleLaptops = new Set();
+  const scrollSections = new Set();
+  const visibleScrollSections = new Set();
   const pendingHeadings = new Set();
   const seenHeadings = new WeakSet();
   const animations = new Map();
@@ -44,11 +44,11 @@
       entries.forEach(entry => { if (entry.isIntersecting) reveal(entry.target); });
     }, { threshold: 0.15 }) : null;
 
-  const laptopObserver = typeof IntersectionObserver === 'function'
+  const scrollObserver = typeof IntersectionObserver === 'function'
     ? new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) visibleLaptops.add(entry.target);
-        else visibleLaptops.delete(entry.target);
+        if (entry.isIntersecting) visibleScrollSections.add(entry.target);
+        else visibleScrollSections.delete(entry.target);
       });
       scheduleScroll();
     }) : null;
@@ -64,20 +64,20 @@
       if (headingObserver) { pendingHeadings.add(heading); headingObserver.observe(heading); }
       else reveal(heading);
     });
-    each(root, '[data-sevahub-macbook3d]', section => {
-      if (!dashboardFor(section) || laptops.has(section)) return;
-      laptops.add(section);
-      if (laptopObserver) laptopObserver.observe(section);
-      else visibleLaptops.add(section);
+    each(root, '[data-sevahub-macbook3d], [data-dashboard-scroll]', section => {
+      if (!dashboardFor(section) || scrollSections.has(section)) return;
+      scrollSections.add(section);
+      if (scrollObserver) scrollObserver.observe(section);
+      else visibleScrollSections.add(section);
     });
   }
 
   function cleanDetached() {
-    laptops.forEach(section => {
+    scrollSections.forEach(section => {
       if (section.isConnected) return;
-      laptopObserver?.unobserve(section);
-      laptops.delete(section);
-      visibleLaptops.delete(section);
+      scrollObserver?.unobserve(section);
+      scrollSections.delete(section);
+      visibleScrollSections.delete(section);
     });
     pendingHeadings.forEach(heading => {
       if (heading.isConnected) return;
@@ -107,13 +107,23 @@
     scrollFrame = 0;
     if (document.hidden) return;
     // Read geometry before writing styles, once per scroll frame and only in view.
-    const updates = [...visibleLaptops].filter(el => el.isConnected).map(section => {
+    const updates = [...visibleScrollSections].filter(el => el.isConnected).map(section => {
       const rect = section.getBoundingClientRect();
       const range = Math.max(1, Math.min(rect.height, innerHeight) * 0.85);
-      const progress = Math.max(0, Math.min(1, (innerHeight - rect.top) / range));
+      const hero = section.hasAttribute('data-dashboard-scroll');
+      const progress = Math.max(0, Math.min(1, hero
+        ? (80 - rect.top) / Math.max(1, rect.height * 0.65)
+        : (innerHeight - rect.top) / range));
       return [section, reduce.matches ? 1 : progress];
     });
     updates.forEach(([section, progress]) => {
+      if (section.hasAttribute('data-dashboard-scroll')) {
+        const startScale = innerWidth <= 800 ? 0.92 : 1.05;
+        section.style.setProperty('--sev-hero-angle', `${20 * (1 - progress)}deg`);
+        section.style.setProperty('--sev-hero-scale', String(startScale + (1 - startScale) * progress));
+        section.style.setProperty('--sev-hero-title-y', `${-70 * progress}px`);
+        return;
+      }
       section.style.setProperty('--sev-lid-angle', `${-38 * (1 - progress)}deg`);
       section.style.setProperty('--sev-lid-scale', String(0.88 + 0.12 * progress));
       section.style.setProperty('--sev-lid-rise', `${-12 * progress}px`);

@@ -21,19 +21,16 @@
   transition:box-shadow .18s ease!important;
 }
 
-/* Top dashboard preview remains visually the same but stops moving every scroll frame. */
+/* The shared motion controller updates visible previews on scroll only. */
 .dashboard-scroll-card{
-  transform:none!important;
   opacity:1!important;
-  transform-style:flat!important;
   will-change:auto!important;
-  transition:none!important;
 }
 .dashboard-scroll-glow{
   filter:none!important;
   opacity:.38;
 }
-.dashboard-scroll-stage{contain:layout paint style}
+.dashboard-scroll-stage{contain:layout style}
 
 /* Avoid expensive backdrop recomposition over animated backgrounds. */
 .sev-dashboard-bg-toggle,
