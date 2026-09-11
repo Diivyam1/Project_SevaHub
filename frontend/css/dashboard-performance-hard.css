@@ -21,7 +21,7 @@
   transition:box-shadow .18s ease!important;
 }
 
-/* The shared motion controller updates visible previews on scroll only. */
+/* The shared ZIP motion controller updates visible previews on scroll only. */
 .dashboard-scroll-card{
   opacity:1!important;
   will-change:auto!important;

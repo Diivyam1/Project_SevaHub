@@ -13,14 +13,20 @@
 <link rel="stylesheet" href="css/auth-service-carousel.css">
 <link rel="stylesheet" href="css/dashboard-ui.css?v=20260904-visual5">
 <link rel="stylesheet" href="css/dashboard-backgrounds.css?v=20260904-sharp1">
+<link rel="stylesheet" href="css/background-nav-relocate.css?v=20260905-bgbar1">
 <link rel="stylesheet" href="css/dashboard-light-colors.css?v=20260904-perf1">
 <link rel="stylesheet" href="css/dashboard-layoutgrid.css?v=20260904-visual5">
 <link rel="stylesheet" href="css/dashboard-macbook3d.css?v=20260904-visual5">
-<link rel="stylesheet" href="css/dashboard-visual-access.css?v=20260904-perf2">
+<link rel="stylesheet" href="css/dashboard-macbook-preview.css?v=20260904-lite1">
 <link rel="stylesheet" href="css/ui-microinteractions.css?v=20260904-visual5">
-<link rel="stylesheet" href="css/dashboard-performance-hard.css?v=20260904-hero1">
-<link rel="stylesheet" href="css/location-ui.css">
+<link rel="stylesheet" href="css/dashboard-performance-hard.css?v=20260904-perf4">
+<link rel="stylesheet" href="css/dashboard-motion.css?v=20260904-motion4">
+<link rel="stylesheet" href="css/motion-smoother.css?v=20260904-smooth1">
+<link rel="stylesheet" href="css/location-ui.css?v=20260904-location3">
+<link rel="stylesheet" href="css/emergency-booking.css?v=20260904-emergency1">
+<link rel="stylesheet" href="css/emergency-mobile-fit.css?v=20260904-mobile1">
 <link rel="stylesheet" href="css/activity-report.css">
+<link rel="stylesheet" href="css/transaction-invoice.css?v=20260904-invoice1">
 <link rel="stylesheet" href="css/notifications-ui.css">
 <link rel="stylesheet" href="css/bargain-actions.css">
 <link rel="stylesheet" href="css/mobile-app-extras.css">
@@ -29,24 +35,36 @@
 <link rel="stylesheet" href="css/worker-welfare.css?v=20260903-welfare2">
 <link rel="stylesheet" href="css/worker-profile-edit.css?v=20260903-profile1">
 <link rel="stylesheet" href="css/worker-moderation.css?v=20260903-moderation1">
+<link rel="stylesheet" href="css/skill-certificate.css?v=20260904-skillcert1">
 <link rel="stylesheet" href="css/support-center-v2.css?v=20260902-live2">
-<link rel="stylesheet" href="css/dashboard-motion.css?v=20260904-hero1">
+<link rel="stylesheet" href="css/mobile-global-fit.css?v=20260904-mobile2">
+<link rel="stylesheet" href="css/booking-cancel.css?v=20260904-cancel2">
+<link rel="stylesheet" href="css/dashboard-swipe.css?v=20260905-swipe1">
 </head>
 <body>
 <div id="app" class="app"></div>
 <script src="/socket.io/socket.io.js"></script>
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 <script src="js/app.js?v=20260902-auth2"></script>
 <script src="js/worker-welfare.js?v=20260903-welfare2"></script>
 <script src="js/worker-profile-edit.js?v=20260903-profile1"></script>
 <script src="js/dashboard-layoutgrid.js?v=20260904-perf3"></script>
-<script src="js/worker-moderation.js?v=20260903-moderation1"></script>
+<script src="js/worker-moderation.js?v=20260904-workerdelete1"></script>
+<script src="js/worker-skill-certificate.js?v=20260904-skillcert3"></script>
+<script src="js/worker-skill-certificate-submit-fix.js?v=20260904-skillcert4"></script>
 <script src="js/persistent-login.js?v=20260902-auth2"></script>
 <script src="js/worker-reviews-chat.js"></script>
 <script src="js/review-ui.js"></script>
-<script src="js/payment-ui.js"></script>
-<script src="js/location-ui.js"></script>
-<script src="js/phone-location-permission.js"></script>
+<script src="js/payment-ui.js?v=20260911-fee5"></script>
+<script src="js/booking-cancel-ui.js?v=20260904-cancel1"></script>
+<script src="js/location-ui.js?v=20260904-location3"></script>
+<script src="js/skill-certificate-badge.js?v=20260904-skillcert1"></script>
+<script src="js/phone-location-permission.js?v=20260904-location2"></script>
+<script src="js/emergency-booking.js?v=20260904-emergency2"></script>
+<script src="js/emergency-resume.js?v=20260904-emergency2"></script>
+<script src="js/emergency-location-fallback.js?v=20260904-emergency3"></script>
+<script src="js/instant-worker-readiness.js?v=20260904-emergency4"></script>
 <script src="js/worker-customer-details.js"></script>
 <script src="js/auth-home.js?v=20260901-reset2"></script>
 <script src="js/auth-crowd-canvas.js?v=20260903-crowd1"></script>
@@ -57,16 +75,18 @@
 <script src="js/support-live.js?v=20260902-live2"></script>
 <script src="js/history-nav.js"></script>
 <script src="js/session-restore.js?v=20260902-auth3"></script>
-<script src="js/activity-report.js"></script>
+<script src="js/activity-report.js?v=20260911-fee5"></script>
+<script src="js/transaction-invoice.js?v=20260911-fee5"></script>
 <script src="js/notifications-ui.js"></script>
 <script src="js/notification-links.js"></script>
 <script src="js/popular-services-brand.js?v=20260901-lang2"></script>
 <script src="js/profile-menu.js"></script>
-<script src="js/dashboard-macbook3d.js?v=20260904-motion1"></script>
+<script src="js/dashboard-macbook3d.js?v=20260904-lite1"></script>
 <script src="js/ui-microinteractions.js?v=20260904-visual5"></script>
 <script src="js/dashboard-backgrounds.js?v=20260904-perf3"></script>
-<script src="js/dashboard-visual-access.js?v=20260904-motion1"></script>
+<script src="js/background-nav-relocate.js?v=20260905-bgbar1"></script>
 <script src="js/dash-normalizer.js?v=20260902-dash1"></script>
-<script src="js/dashboard-motion.js?v=20260904-hero1"></script>
+<script src="js/dashboard-motion.js?v=20260904-motion4"></script>
+<script src="js/motion-smoother.js?v=20260904-smooth1"></script>
 </body>
 </html>

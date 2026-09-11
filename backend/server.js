@@ -67,18 +67,26 @@ io.on('connection',socket=>{
 app.use('/api/auth',require('./routes/auth'));
 app.use('/api/services',require('./routes/services'));
 app.use('/api/workers',require('./routes/workers'));
+app.use('/api/skill-certificates',require('./routes/skill-certificates'));
 app.use('/api/bookings',require('./routes/bookings'));
 app.use('/api/bargains',require('./routes/bargains'));
 app.use('/api/rewards',require('./routes/rewards'));
 app.use('/api/reviews',require('./routes/reviews'));
 app.use('/api/payments',require('./routes/payments'));
 app.use('/api/location',require('./routes/location'));
+app.use('/api/emergency/active',require('./routes/emergency-active'));
+app.use('/api/emergency',require('./routes/emergency-dynamic'));
+app.use('/api/emergency',require('./routes/emergency'));
 app.use('/api/notifications',require('./routes/notifications'));
 app.use('/api/support',require('./routes/support'));
 app.use('/api/welfare',require('./routes/welfare'));
 app.use('/api/admin/welfare',require('./routes/admin-welfare'));
 app.use('/api/admin/intelligence',require('./routes/admin-intelligence'));
+app.use('/api/admin',require('./routes/admin-skill-certificates'));
+app.use('/api/admin',require('./routes/admin-worker-management'));
 app.use('/api/admin',require('./routes/admin'));
+// Reliable DB-backed scheduled-booking agent takes /chat first; legacy AI router remains as fallback for any other AI endpoints.
+app.use('/api/ai',require('./routes/ai-booking-v2'));
 app.use('/api/ai',require('./routes/ai'));
 app.use('/api/chat',require('./routes/chat'));
 
@@ -89,6 +97,7 @@ app.get('/api/health',(req,res)=>res.json({success:true,status:'ok'}));
    a dedicated ADMIN_EMAIL + ADMIN_PASSWORD protected admin token. */
 app.get('/cooperative-admin',(req,res)=>{
   res.set('X-Robots-Tag','noindex, nofollow, noarchive');
+  res.set('Cache-Control','no-store, no-cache, must-revalidate, private');
   res.sendFile(path.join(__dirname,'../frontend/cooperative-admin.html'));
 });
 
